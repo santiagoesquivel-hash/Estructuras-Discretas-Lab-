@@ -17,6 +17,11 @@ cashback x = x* 0.10
     Uso:
 -}
 
-cashback_monto :: Double -> Double
-cashback_monto x = x * 0.10
+cashback_monto :: Double -> IO ()
+cashback_monto y = 
+    if y * 0.10 < 20
+    then putStrLn("Tienes " ++ show y ++ " pumapuntos K NUV XD")
+    else putStrLn("Tienes " ++ show y ++ " pumapuntos K PRO :O")
+
+
 
