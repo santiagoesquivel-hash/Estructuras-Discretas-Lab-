@@ -48,10 +48,11 @@ minutoshoras x =
     Uso: esEstafa 100 200 100 0 = true 
     -}
 
-esEstafa :: Double -> Double -> Double -> Double -> Bool 
-esEstafa costo billeteGrande billeteExacto cambioDevuelto = 
-    cambioDevuelto == (billeteGrande - costo) &&
-    billeteExacto == costo
+esEstafa :: Int -> Int -> Int -> Int -> Bool 
+esEstafa costo primerBillete  segundoBillete cambioDevuelto = 
+    if (segundoBillete - primerBillete + cambioDevuelto - costo) == 0
+    then False
+    else True 
 
 {- Función esDescendente 
     Descripción:Recibe 4 valores los cuales se comparan entre sí para ver que cada número es menor que el anterior y si no es False
@@ -70,14 +71,23 @@ esDescendente primero segundo tercero cuarto =
 -}
 
 imc :: Double -> Double -> String 
-imc peso estatura =
-    if (peso/((estatura/100)*(estatura/100))) <= 18.5 
-    then "bajo de peso"
-    else if
-        (peso/((estatura/100)*(estatura/100))) <= 25
-        then "normal"
-        else if (peso/((estatura/100)*(estatura/100))) < 30
+imc peso estatura = 
+    if estatura < 3
+    then if (peso/((estatura/100)*(estatura/100))) <= 18.5 
+         then "bajo de peso"
+         else if
+         (peso/((estatura/100)*(estatura/100))) <= 25
+         then "normal"
+         else if (peso/((estatura/100)*(estatura/100))) < 30
             then "sobrepeso"
+            else "obeso"
+    else if (peso/(estatura*estatura)) <= 18.5 
+        then "bajo de peso"
+        else if
+        (peso/(estatura*estatura)) <= 25
+        then "normal"
+        else if (peso/(estatura)*(estatura)) < 30
+           then "sobrepeso"
             else "obeso"
 
 {- Función hipotenusa 
