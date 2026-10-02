@@ -54,8 +54,8 @@ esEstafa costo billeteGrande billeteExacto cambioDevuelto =
     billeteExacto == costo
 
 {- Función esDescendente 
-    Descripción:
-    Uso:
+    Descripción:Recibe 4 valores los cuales se comparan entre sí para ver que cada número es menor que el anterior y si no es False
+    Uso:esDescendente 5 4 3 2 = True 
 -}
 
 esDescendente :: Double -> Double -> Double-> Double -> Bool
@@ -64,25 +64,42 @@ esDescendente primero segundo tercero cuarto =
     segundo > tercero &&
     tercero > cuarto 
 
+{- Función imc
+    Descripción:Ingresas tu peso en kg y tu estatura en cm y calcula de acuerdo con los parametros que indica la OMS 
+    Uso:imc 53.5 161 = normal 
+-}
+
 imc :: Double -> Double -> String 
 imc peso estatura =
     if (peso/((estatura/100)*(estatura/100))) <= 18.5 
     then "bajo de peso"
     else if
-         (peso/((estatura/100)*(estatura/100))) <= 25
-         then "normal"
-         else if (peso/((estatura/100)*(estatura/100))) < 30
+        (peso/((estatura/100)*(estatura/100))) <= 25
+        then "normal"
+        else if (peso/((estatura/100)*(estatura/100))) < 30
             then "sobrepeso"
             else "obeso"
 
+{- Función hipotenusa 
+    Descripción:se introduce un valor que representa la base de un triangulo rectangulo y un valor h dando la altura del mismo triangulo EN ESE ORDEN y se calculara la hipotenusa y la mostrará
+    Uso:hipotenusa 9.0 12.0 = 15.0 
+-}
 
+hipotenusa :: Float -> Float -> Float
+hipotenusa base altura = sqrt ((base*base)+(altura*altura))
 
+{- Función Pendiente 
+    Descripción: Calcula la distancia entre dos puntos con las coordenadas introducidas
+    Uso: distanciaPuntos distanciaPuntos (2,1) (5,5) = 5
+-}
 
+pendiente :: (Float, Float) -> (Float, Float) -> Float 
+pendiente (x1,y1) (x2,y2) = ((y2-y1)/(x2-x1)) 
 
+{- Función distanciaPuntos 
+    Descripción: Calcula la distancia entre dos puntos con las coordenadas introducidas
+    Uso: distanciaPuntos distanciaPuntos (2,1) (5,5) = 5
+-}
 
-    
-
-    
-    
-
-
+distanciaPuntos :: (Float, Float) -> (Float, Float) -> Float
+distanciaPuntos (x1,y1) (x2,y2) = sqrt (((x2-x1)*(x2-x1)) + ((y2-y1)*(y2-y1)))
