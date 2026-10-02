@@ -6,22 +6,83 @@ reconversion :: Double -> Double
 reconversion x = x/1000
 
 {-Función cashback
-    Descripción:
-    Uso:
+    Descripción: Calcula el 10% sobre un valor
+    Uso: cashback 890 = 89
 -}
 
 cashback :: Double -> Double
 cashback x = x* 0.10 
+
 {-Función cashback_monto 
-    Descripción:
-    Uso:
+    Descripción: Calcula el 10% del valor y lo muestra 
+    Uso: cashback_monto 928 = 92.8
 -}
 
 cashback_monto :: Double -> IO ()
 cashback_monto y = 
     if y * 0.10 < 20
-    then putStrLn("Tienes " ++ show y ++ " pumapuntos K NUV XD")
-    else putStrLn("Tienes " ++ show y ++ " pumapuntos K PRO :O")
+    then putStrLn("Sumaste " ++ show y ++ " pumapuntos K NUV XD")
+    else putStrLn("Sumaste " ++ show y ++ " pumapuntos K PRO :O")
 
+{-Función MinutosHoras 
+    Descripción: Se recibe un número (que pretenden ser los minutos) y se convierte a horas con minutos
+    Uso: minutosHoras 85 = 1 hora y 25 minutos
+-}
+
+minutoshoras :: Int -> String
+minutoshoras x = 
+    let horas = x `div` 60 
+        minutos = x `mod` 60
+    in 
+        if horas == 1
+        then show horas ++ " hora y "
+        else show horas ++ " horas y " 
+        ++ show minutos 
+           ++ if minutos == 1
+              then " minuto"
+              else " minutos"
+
+
+{-Función esEstafa
+    Descripción: Ingresan 4 números los cuales son un costo, un Billete que rebasa el costo (billeteGrande), consecutivamente un billete igual al costo (billeteExacto) y el cambio que se pretende dar y si esque se da un cambio que no se debe darse será verdadera la estafa
+    Uso: esEstafa 100 200 100 0 = true 
+    -}
+
+esEstafa :: Double -> Double -> Double -> Double -> Bool 
+esEstafa costo billeteGrande billeteExacto cambioDevuelto = 
+    cambioDevuelto == (billeteGrande - costo) &&
+    billeteExacto == costo
+
+{- Función esDescendente 
+    Descripción:
+    Uso:
+-}
+
+esDescendente :: Double -> Double -> Double-> Double -> Bool
+esDescendente primero segundo tercero cuarto =
+    primero > segundo &&
+    segundo > tercero &&
+    tercero > cuarto 
+
+imc :: Double -> Double -> String 
+imc peso estatura =
+    if (peso/((estatura/100)*(estatura/100))) <= 18.5 
+    then "bajo de peso"
+    else if
+         (peso/((estatura/100)*(estatura/100))) <= 25
+         then "normal"
+         else if (peso/((estatura/100)*(estatura/100))) < 30
+            then "sobrepeso"
+            else "obeso"
+
+
+
+
+
+
+    
+
+    
+    
 
 
