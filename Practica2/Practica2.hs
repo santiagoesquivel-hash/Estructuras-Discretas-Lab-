@@ -50,9 +50,9 @@ minutoshoras x =
 
 esEstafa :: Int -> Int -> Int -> Int -> Bool 
 esEstafa costo primerBillete  segundoBillete cambioDevuelto = 
-    if (segundoBillete - primerBillete + cambioDevuelto - costo) == 0
-    then False
-    else True 
+    if(segundoBillete - primerBillete + cambioDevuelto - costo) == 0
+        then False
+        else True
 
 {- Función esDescendente 
     Descripción:Recibe 4 valores los cuales se comparan entre sí para ver que cada número es menor que el anterior y si no es False

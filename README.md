@@ -8,7 +8,13 @@ Estructuras_Discretas/
 │   ├── README.md
 │   └── Practica1.md
 ├── Practica2/
+│   ├── README.md
+│   ├── Práctica2.hs
+│   └── image.png
 ├── Practica3/
+│   ├── Cuadrado.hs 
+│   ├── Practica3.hs
+│   └── RADME.md
 ├── Practica4/
 ├── Practica5/
 ├── Practica6/
