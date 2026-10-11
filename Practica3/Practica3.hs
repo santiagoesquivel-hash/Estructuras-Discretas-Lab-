@@ -52,3 +52,4 @@ soloPares [] = []
 soloPares (x:xs) = if esParBin x 
                     then x : soloPares xs 
                     else soloPares xs 
+
