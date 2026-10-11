@@ -1,29 +1,54 @@
-import Data.Bits 
-import Cuadrado 
+import EsParBin (esParBin)
+data Plazo = Dias Double | Meses Double deriving (Show, Eq) 
 
-data Persona = Persona String Int String deriving (Show) 
-data Dia = Lun | Mar | Mie | Jue | Vier | Sab | Dom deriving (Show, Eq, Enum)
-{-succ lunes => Mart 
- pred Domingo => sabado 
--} succ lunes => Mart 
- 
+diasmeses :: Double -> Double
+diasmeses x = (x / 28)
 
-esParBin :: Int -> Bool
-esParBin n = (n.&.1) == 0
+montoFinal :: Double -> Double -> Double -> Double
+montoFinal vi i t = vi * (1 + i * (t / 360.0))
 
-{-Función: sumCuadrados
-    Descripción: toma tres números y regresa la suma de los cuadrados de los dos números más grandes.
-    uso: sumCyadrados 4 2 6 = 52
--}
+anual :: Int -> Int 
+anual x = x `mod` 364 
 
-sumCuadrados :: Int -> Int -> Int -> Int
-sumCuadrados x y z = 
-    if x <= y && x <= z 
-    then cuadrado y + cuadrado z
-    else cuadrado x 
+cetes :: Double -> Plazo -> Double
+cetes vi (Dias n) = 
+        let tasa = diasmeses n
+        in if tasa <= 1
+        then montoFinal vi 0.0609 n 
+        else if tasa <= 6.5 
+            then (montoFinal vi 0.0691 n )
+            else if tasa <= 13 
+                then (montoFinal vi 0.0744 n )
+                else 0
+cetes vi (Meses n) =
+        if n <= 1
+        then (montoFinal vi 0.0609 n)
+        else if n <= 6
+            then (montoFinal vi 0.0691 n )
+            else if n <= 12
+                then (montoFinal vi 0.0744 n )
+                else 0
 
-hombre :: Persona -> String 
-hombre (Persona nombre edad residencia) = nombre ++ " tiene " ++ show edad ++ " y reside en " ++ residencia
+m :: Double -> Double -> Double 
+m x y = x-y 
+mensajeCetes :: Double -> Plazo -> String 
+mensajeCetes x (Dias n) =
+    let total = cetes x (Dias n)
+        montoBruto = m total x 
+    in "Despues de " ++ show (round n) ++ " dias, obtuve " ++ show montoBruto ++ " de rendimiento bruto sin asumir ningun riesgo crediticio. El monto total de mi inversion es " ++ show total
+mensajeCetes x (Meses n) = 
+    let total = cetes x (Meses n)
+        montoBruto = m total x
+    in "Despues de " ++ show (round n) ++ " meses, obtuve " ++ show montoBruto ++ " de rendimiento bruto sin asumir ningun riesgo crediticio. El monto total de mi inversion es " ++ show total
 
-let list = [x*x | x<- [1..100], even x ]
+negativos :: [Int] -> Int 
+negativos [] = 0
+negativos (x:xs) = if x < 0 
+                    then 1 + negativos xs
+                    else negativos xs
 
+soloPares :: [Int] -> [Int]
+soloPares [] = []
+soloPares (x:xs) = if esParBin x 
+                    then x : soloPares xs 
+                    else soloPares xs 
