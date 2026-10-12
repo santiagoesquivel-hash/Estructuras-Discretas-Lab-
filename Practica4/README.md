@@ -1,0 +1,3 @@
+## Práctica 4
+
+De acuerdo al video musical adjuntado en la práctica 3 y lo visto en clase tengo entendido que la recursión es definir una función con un caso base (donde este es el límite/lo más pequeño a lo que puede llegar la función) porque sin este no tiene un límite, y el caso recursivo donde la misma función se llama a ella misma para poder llegar a un caso base y poder arrojar algo, eso o entiendo donde existen casos donde le puedes dar un dato que funje también como límite y desde el caso base parte para poder contestar el caso límite que tu le pusiste. 
