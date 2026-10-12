@@ -41,14 +41,29 @@ mensajeCetes x (Meses n) =
         montoBruto = m total x
     in "Despues de " ++ show (round n) ++ " meses, obtuve " ++ show montoBruto ++ " de rendimiento bruto sin asumir ningun riesgo crediticio. El monto total de mi inversion es " ++ show total
 
-negativos :: [Int] -> Int 
-negativos [] = 0
-negativos (x:xs) = if x < 0 
-                    then 1 + negativos xs
-                    else negativos xs
+negativos :: [Int] -> Int
+negativos list = sum [1 | x <- list, x < 0]
 
 soloPares :: [Int] -> [Int]
-soloPares [] = []
-soloPares (x:xs) = if esParBin x 
-                    then x : soloPares xs 
-                    else soloPares xs 
+soloPares list = [x | x <- list, esParBin x] 
+
+negativosh :: [Int] -> Int 
+negativosh [] = 0
+negativosh (x:xs) = if x < 0 
+                    then 1 + negativosh xs
+                    else negativosh xs
+
+soloParesh :: [Int] -> [Int]
+soloParesh [] = []
+soloParesh (x:xs) = if esParBin x 
+                    then x : soloParesh xs 
+                    else soloParesh xs 
+
+primos :: [Int] -> [Int]
+primos list = [x | x <- list, x > 1, [y | y <- [1..x], x `mod` y == 0] == [1,x]]
+
+mCD :: Int -> Int -> [Int]
+mCD n m = [x | x <- [1..n], n `mod` x == 0, m `mod` x == 0] 
+
+coprimos :: Int -> [Int]
+coprimos m = [x | x <- [1..m], mCD x m == [1]]
