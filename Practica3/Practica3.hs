@@ -3,7 +3,7 @@
     uso: Hasta el inicio del código debe escribirse import NombredelArchivo(EsParBin) y ya se puede llamar
 -}
 
-import EsParBin (esParBin)
+import EsParBin (esParBin, diasMeses, montoFinal,m,mCD)
 
 {-Tipo de dato Plazo
     Descripción: Creamos un tipo de dato en el que pueda detectarse el Texto Meses o Dias y un Double junto con ellos 
@@ -11,22 +11,7 @@ import EsParBin (esParBin)
 -}
 data Plazo = Dias Double | Meses Double deriving (Show, Eq) 
 
-{-Función auxiliar diasMeses  
-    Descripción: Ingresa un número Double y regresa un Double de los cuales el primero son x número de días y el segundo es su
-    conversion a meses donde este cuenta con 28 días
-    Uso: diasMeses 28 = 1
--}
 
-diasMeses :: Double -> Double
-diasMeses x = (x / 28)
-
-{-Función auxiliar montoFinal
-    Descripción: se ingresan 3 valores que se interpretan como un monto inicial vi, un porcentaje de interes y un lapso de 
-    tiempo en días calcula el rendimiento bruto más el monto inicial
-    Uso: montoFinal 58 0.0609 3 =  58.274726666666666
--}
-montoFinal :: Double -> Double -> Double -> Double
-montoFinal vi i t = vi * (1 + i * (t / 360.0))
 
 {-Función cetes 
     Descripción: Dado un monto inicial vi y un lapso de tiempo (Dias x) o (Meses x) calcuará el rendimiento de tu inversión y lo
@@ -57,13 +42,7 @@ cetes vi (Meses n) =
                 then (montoFinal vi 0.0744 (n*28))
                 else 0
 
-{-Función auxiliar m 
-    Descripción: es una resta donde se espera recibir un monto inicial y un monto final y la diferencia ser el rendimiento 
-    bruto de la inversión que se realizo
-    Uso: m 50.50 - 50 = 0.50
--}
-m :: Double -> Double -> Double 
-m x y = x-y 
+
 
 {-Función mensajeCetes
     Descripción:De acuerdo a la función anterior (cetes) recibe un monto inicial de inversión, un plazo expresado en días 
@@ -112,14 +91,6 @@ soloPares list = [x | x <- list, esParBin x]
 
 primos :: [Int] -> [Int]
 primos list = [x | x <- list, x > 1, [y | y <- [1..x], x `mod` y == 0] == [1,x]]
-
-{-Función auxiliar mCD 
-    Descripción: Recibe dos números naturales y devuelve una lista con todos los divisores que comparten los dos números
-    Uso: mCD 4 8 = [1,2,4]
--}
-
-mCD :: Int -> Int -> [Int]
-mCD n m = [x | x <- [1..n], n `mod` x == 0, m `mod` x == 0] 
 
 {-Función coprimos 
     Descripción: Recibe un número natural y obtiene sus coprimos del 1 hasta x (donde x es el número ingresado)
