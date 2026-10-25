@@ -28,4 +28,4 @@ Una posible analogía es como tratar de desenredar y separar varios estambres de
 
 ## NOTA:
 
-En mi archivo solo me fue necesarío definir la suma de Enteros SIN la función resta, porque no era necesaria y me ahorró tiempo para concluir está práctica.  
+Para definir la función suma tanto para los enteros como para los naturales no me fue necesario definir la resta, lo que me ahorro algo de tiempo en el realizamiento de esta práctica.
